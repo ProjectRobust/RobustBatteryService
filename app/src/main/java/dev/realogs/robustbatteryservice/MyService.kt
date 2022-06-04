@@ -1,10 +1,7 @@
 package dev.realogs.robustbatteryservice
 
 import android.app.*
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
@@ -15,18 +12,6 @@ import dev.realogs.robustbatteryservice.Constants.SERVICE_NOTIFICATION_ID
 
 class MyService : Service() {
 
-    var voltage =""
-
-    var temperature=""
-    val receiver = object: BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val b: Bundle? = intent?.extras
-            voltage= b?.getString("voltage")!!
-            temperature = b?.getString("temperature")!!
-
-        }
-
-    }
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -36,7 +21,7 @@ class MyService : Service() {
         super.onCreate()
         createNotificationChannel()
 
-        registerReceiver(receiver, IntentFilter("BatteryStats"))
+
 
     }
 
@@ -51,7 +36,14 @@ class MyService : Service() {
         val batteryManager: BatteryManager = applicationContext.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
         var batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
 
-        Log.d("volt", voltage)
+        var charging= ""
+
+        if(batteryManager.isCharging){
+            charging = "Charging"
+        } else {
+            charging = "Unplugged"
+        }
+
 
         val notificationIntent = Intent(this, MainActivity::class.java)
 
@@ -59,8 +51,8 @@ class MyService : Service() {
 
         val notification = Notification
             .Builder(this, CHANNEL_ID)
-            .setContentTitle("Battery Monitor")
-            .setContentText("Battery Percentage: " + batteryLevel.toString())
+            .setContentTitle("Battery Percentage: " + batteryLevel + "%")
+            .setContentText("Charging Status: " + charging)
             .setSmallIcon(R.drawable.ic_baseline_battery_5_bar_24)
             .setContentIntent(pendingIntent)
             .build()

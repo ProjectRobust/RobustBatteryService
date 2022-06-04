@@ -1,10 +1,7 @@
 package dev.realogs.robustbatteryservice
 
 import android.app.ActivityManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.os.BatteryManager
 import android.os.Bundle
 import android.view.View
@@ -34,15 +31,16 @@ class MainActivity : AppCompatActivity() {
         startStopService()
     }
 
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(batteryReceiver)
-    }
 
     private fun startStopService() {
         if (!isMyServiceRunning(MyService::class.java)) {
             Toast.makeText(this, "Battery Service is Running", Toast.LENGTH_SHORT).show()
             startService(Intent(this, MyService::class.java))
+        } else {
+            Toast.makeText(this, "Battery Service Stopped", Toast.LENGTH_SHORT).show()
+            stopService(Intent(this, MyService::class.java))
+            startService(Intent(this, MyService::class.java))
+            Toast.makeText(this, "Battery Service Restarted", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -62,16 +60,6 @@ class MainActivity : AppCompatActivity() {
 class BatteryStatsService : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        if(intent == null){
-            return
-        }
-        if(context == null){
-            return
-        }
-
-        val action: String? = intent.action
-        if(action == null)
-            return
 
         var charging_status = ""
         var battery_condition = ""
@@ -252,13 +240,7 @@ class BatteryStatsService : BroadcastReceiver() {
         }
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)!!
-        if(action.equals(Intent.ACTION_BATTERY_CHANGED)){
-            val extras: Bundle? = intent.extras
-            val i: Intent = Intent("BatteryStats")
-            i.putExtra("voltage", voltage.toString())
-            i.putExtra("temperature", temperature_celcius.toString())
-            context.sendBroadcast(i)
-        }
+
 
         binding.tvBTPercent.setText(level.toString() + "%")
         binding.conditionValue.setText(battery_condition)
