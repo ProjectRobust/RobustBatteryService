@@ -247,12 +247,9 @@ class BatteryStatsService : BroadcastReceiver() {
 
         }
 
-//        if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
-//            charging_status = "Unplugged"
-//
-//        }
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
+
 
 
         binding.tvBTPercent.setText(level.toString() + "%")

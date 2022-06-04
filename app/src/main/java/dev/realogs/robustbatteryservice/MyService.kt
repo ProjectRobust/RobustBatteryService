@@ -15,10 +15,6 @@ import dev.realogs.robustbatteryservice.Constants.SERVICE_NOTIFICATION_ID
 class MyService : Service() {
 
 
-    var voltage: String = "80"
-    var temerature: String = "80"
-    var status: String = "80"
-
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -37,7 +33,10 @@ class MyService : Service() {
     private fun showNotification() {
 
         val batteryManager: BatteryManager = applicationContext.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-         var batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        var batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        var voltage = batteryManager.getLongProperty(BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE)
+        Log.d("debz", voltage.toString())
+
 
         val notificationIntent = Intent(this, MainActivity::class.java)
 
@@ -76,3 +75,5 @@ class MyService : Service() {
 
 
 }
+
+
