@@ -7,11 +7,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import dev.realogs.robustbatteryservice.databinding.ActivityMainBinding
+import java.util.*
 
 private lateinit var binding: ActivityMainBinding
 
@@ -120,7 +120,7 @@ class BatteryStatsService : BroadcastReceiver() {
 
 
         //Battery Charging Status
-        var status: Int = intent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+        var status: Int = intent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)!!
         if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
             charging_status = "Charging"
             binding.tvStatusValueCharging.visibility = View.VISIBLE
@@ -249,12 +249,9 @@ class BatteryStatsService : BroadcastReceiver() {
 
         if (status == BatteryManager.BATTERY_STATUS_UNKNOWN) {
             charging_status = "Unknown"
-
         }
 
-
-        var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
-
+        var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)!!
         if(action.equals(Intent.ACTION_BATTERY_CHANGED)){
             val extras: Bundle? = intent.extras
             val i: Intent = Intent("BatteryStats")
@@ -268,6 +265,12 @@ class BatteryStatsService : BroadcastReceiver() {
         binding.temperatureValue.setText(temperature_celcius.toString() + "°C")
         binding.tvVoltageValue.setText(voltage.toString() + "V")
         binding.progressBar.setProgress(level, true)
+
+        val now = Battery.getBatteryCurrentNowInAmperes(context)
+
+       val  value = String.format(Locale.getDefault(), "%.3f", now) + " A"
+
+        binding.tvCurrentValue.setText(value)
 
     }
 }

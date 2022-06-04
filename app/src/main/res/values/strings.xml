@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RobustBatteryService</string>
+    <string name="battery_measure">Measuring</string>
 </resources>
