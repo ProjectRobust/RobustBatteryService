@@ -224,7 +224,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35sp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/battery_charging" />
+                android:src="@drawable/battery_charging"
+                />
 
             <ImageView
                 android:id="@+id/batteryLow"
@@ -233,7 +234,7 @@
                 android:layout_marginLeft="245dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/batteryCharging"
-                android:src="@drawable/battery" />
+                android:src="@drawable/battery_discharged" />
 
             <TextView
                 android:id="@+id/tvStatus"

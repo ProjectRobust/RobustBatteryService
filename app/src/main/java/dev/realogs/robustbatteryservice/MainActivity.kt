@@ -43,6 +43,36 @@ class BatteryStatsService : BroadcastReceiver(){
         //Battery Health Start
         var health = intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, 0);
 
+        if (health == BatteryManager.BATTERY_HEALTH_COLD) {
+            battery_condition = "Cold"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_DEAD) {
+            battery_condition = "Dead"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_GOOD) {
+            battery_condition = "Good"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_OVERHEAT) {
+            battery_condition = "Over Heat"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE) {
+            battery_condition = "Over Voltage"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_UNKNOWN) {
+            battery_condition = "Unknown"
+        }
+
+        if (health == BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE) {
+            battery_condition = "Error"
+        }
+
+        binding.tvBatteryPercent.setText(level)
+        binding.progressBar.setProgress(level, true)
     }
 
 }
