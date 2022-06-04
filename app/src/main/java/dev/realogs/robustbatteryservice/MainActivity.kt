@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        window.setStatusBarColor(this.getResources().getColor(R.color.black))
+
         batteryReceiver = BatteryStatsService()
 
         IntentFilter(Intent.ACTION_BATTERY_CHANGED).also {
