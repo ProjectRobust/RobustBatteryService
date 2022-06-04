@@ -83,6 +83,44 @@ class BatteryStatsService : BroadcastReceiver(){
         var status: Int = intent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
         if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
             charging_status = "Charging"
+            binding.tvStatusValueCharging.visibility = View.VISIBLE
+            binding.tvStatusValueDischarging.visibility = View.INVISIBLE
+
+            binding.batteryCharging.visibility = View.VISIBLE
+            binding.batteryVeryLow.visibility = View.INVISIBLE
+
+            if(level <= 15){
+                binding.batteryVeryLow.visibility = View.VISIBLE
+                binding.batteryVeryLow.setImageResource(R.drawable.battery_very_low)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+
+
+            }else if (level >= 15 && level< 35){
+
+                binding.batteryLow.visibility = View.VISIBLE
+                binding.batteryLow.setImageResource(R.drawable.battery_low)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+
+            } else if(level >= 35 && level < 80){
+
+                binding.batteryMedium.visibility = View.VISIBLE
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+
+            } else if(level >= 80){
+                binding.batteryFull.visibility = View.VISIBLE
+                binding.batteryFull.setImageResource(R.drawable.battery_full)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+
+            }
 
             var chargePlug = intent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
             if (chargePlug == BatteryManager.BATTERY_PLUGGED_USB) {
@@ -112,16 +150,61 @@ class BatteryStatsService : BroadcastReceiver(){
 
         if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {
             charging_status = "Discharging"
-            binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_white_24dp)
+
+            binding.tvStatusValueCharging.visibility = View.INVISIBLE
+            binding.tvStatusValueDischarging.visibility = View.VISIBLE
+
+            binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_grey600_24dp)
             binding.imgPowerAc.setImageResource(R.drawable.ic_power_plug_grey600_24dp)
             binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_white_24dp)
             binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_grey600_24dp)
 
+            if(level <= 15){
+                binding.batteryVeryLow.visibility = View.VISIBLE
+                binding.batteryVeryLow.setImageResource(R.drawable.battery_very_low)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+                binding.batteryCharging.visibility = View.INVISIBLE
+
+            }else if (level >= 15 && level< 35){
+
+                binding.batteryLow.visibility = View.VISIBLE
+                binding.batteryLow.setImageResource(R.drawable.battery_low)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+                binding.batteryCharging.visibility = View.INVISIBLE
+
+            } else if(level >= 35 && level < 80){
+
+                binding.batteryMedium.visibility = View.VISIBLE
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+                binding.batteryCharging.visibility = View.INVISIBLE
+
+            } else if(level >= 80){
+                binding.batteryFull.visibility = View.VISIBLE
+                binding.batteryFull.setImageResource(R.drawable.battery_full)
+                binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+                binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+                binding.batteryVeryLow.visibility = View.INVISIBLE
+                binding.batteryCharging.visibility = View.INVISIBLE
+
+
+            }
         }
 
         if (status == BatteryManager.BATTERY_STATUS_FULL) {
             charging_status = "Full"
 
+            binding.batteryFull.visibility = View.VISIBLE
+            binding.batteryFull.setImageResource(R.drawable.battery_full)
+            binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
+            binding.batteryLow.setImageResource(R.drawable.battery_low_grey)
+            binding.batteryVeryLow.visibility = View.INVISIBLE
         }
 
         if (status == BatteryManager.BATTERY_STATUS_UNKNOWN) {
@@ -129,11 +212,10 @@ class BatteryStatsService : BroadcastReceiver(){
 
         }
 
-        if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
-            charging_status = "Unplugged"
-
-        }
-
+//        if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
+//            charging_status = "Unplugged"
+//
+//        }
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
 
@@ -141,7 +223,6 @@ class BatteryStatsService : BroadcastReceiver(){
         binding.tvBTPercent.setText(level.toString() + "%")
         binding.conditionValue.setText(battery_condition)
         binding.temperatureValue.setText(temperature_celcius.toString() + "°C")
-        binding.tvStatusValue.setText(charging_status)
         binding.tvVoltageValue.setText(voltage.toString() + "V")
 
         binding.progressBar.setProgress(level, true)

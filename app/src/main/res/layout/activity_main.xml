@@ -11,13 +11,13 @@
         android:id="@+id/tvBatteryMonitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/neonGreen"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/sofia_bold"
         android:text="Battery Monitor"
+        android:textColor="@color/neonGreen"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -29,8 +29,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="20dp"
         android:backgroundTint="#212121"
-        app:cardCornerRadius="15dp"
-        >
+        app:cardCornerRadius="15dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -83,35 +82,35 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/progressBar"
                 android:layout_alignParentStart="true"
-                android:textColor="@color/white"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/sofia_bold"
                 android:text="Drain out until "
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvDrainTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tvDrain"
+                android:fontFamily="@font/sofia_bold"
                 android:text="10:54 am"
                 android:textColor="@color/white"
-                android:fontFamily="@font/sofia_bold"
-                android:textSize="16sp"
-                android:layout_toEndOf="@id/tvDrain"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/progressBar"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tvDrainTime"
+                android:fontFamily="@font/sofia_bold"
                 android:text=" [Based on usages]"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/sofia_bold"
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/progressBar"
-                android:layout_toEndOf="@id/tvDrainTime"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCondition"
@@ -225,16 +224,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35sp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/battery_charging" />
+                android:src="@drawable/battery_charge" />
 
             <ImageView
                 android:id="@+id/batteryLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="245dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="60dp"
                 android:layout_toEndOf="@id/batteryCharging"
-                android:src="@drawable/battery_discharged" />
+                android:src="@drawable/battery_low" />
+
+            <ImageView
+                android:id="@+id/batteryMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/batteryLow"
+                android:src="@drawable/battery_medium" />
+
+            <ImageView
+                android:id="@+id/batteryFull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/batteryMedium"
+                android:src="@drawable/battery_full" />
+
+            <ImageView
+                android:id="@+id/batteryVeryLow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toEndOf="@id/batteryFull"
+                android:src="@drawable/battery_very_low" />
 
             <TextView
                 android:id="@+id/tvStatus"
@@ -249,7 +275,8 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tvStatusValue"
+                android:visibility="invisible"
+                android:id="@+id/tvStatusValueCharging"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/batteryCharging"
@@ -258,6 +285,18 @@
                 android:layout_toEndOf="@id/tvStatus"
                 android:fontFamily="@font/sofia_medium"
                 android:text="Charging"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvStatusValueDischarging"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/batteryCharging"
+                android:layout_marginLeft="145dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvStatus"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Discharging"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -290,13 +329,13 @@
                 android:id="@+id/tvCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tvVoltage"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_medium"
                 android:text="Current"
                 android:textColor="@color/neonGreen"
-                android:textSize="18sp"
-                android:layout_below="@id/tvVoltage"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="35dp"
-                android:fontFamily="@font/sofia_medium"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvCurrentValueMeasuring"
@@ -312,7 +351,6 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:visibility="invisible"
                 android:id="@+id/tvCurrentValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -323,25 +361,26 @@
                 android:fontFamily="@font/sofia_medium"
                 android:text="2000mA"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <RelativeLayout
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/cardViewCDetails"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_normal"
-        android:background="@drawable/round_corners">
+        android:layout_below="@id/cardViewCDetails"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
 
         <ImageView
             android:id="@+id/imgPowerDischarging"
@@ -353,37 +392,37 @@
             app:srcCompat="@drawable/ic_battery_50_grey600_24dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_power_plug_grey600_24dp"
             android:id="@+id/imgPowerAc"
-            android:layout_marginLeft="@dimen/list_sub_item_margin"
-            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerDischarging"
             android:layout_toRightOf="@+id/imgPowerDischarging"
-            android:layout_toEndOf="@+id/imgPowerDischarging" />
+            app:srcCompat="@drawable/ic_power_plug_grey600_24dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_usb_grey600_24dp"
-            android:layout_marginLeft="@dimen/list_sub_item_margin"
-            android:layout_marginStart="@dimen/list_sub_item_margin"
             android:id="@+id/imgPowerUsb"
-            android:layout_alignTop="@+id/imgPowerAc"
-            android:layout_toRightOf="@+id/imgPowerAc"
-            android:layout_toEndOf="@+id/imgPowerAc" />
-
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_access_point_grey600_24dp"
-            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_alignTop="@+id/imgPowerAc"
             android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerAc"
+            android:layout_toRightOf="@+id/imgPowerAc"
+            app:srcCompat="@drawable/ic_usb_grey600_24dp" />
+
+        <ImageView
             android:id="@+id/imgPowerWireless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@+id/imgPowerUsb"
+            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerUsb"
             android:layout_toRightOf="@+id/imgPowerUsb"
-            android:layout_toEndOf="@+id/imgPowerUsb" />
+            app:srcCompat="@drawable/ic_access_point_grey600_24dp" />
 
     </RelativeLayout>
 
