@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         startStopService()
     }
 
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(batteryReceiver)
+    }
+
     private fun startStopService() {
         if (!isMyServiceRunning(MyService::class.java)) {
             Toast.makeText(this, "Battery Service is Running", Toast.LENGTH_SHORT).show()
@@ -250,7 +255,13 @@ class BatteryStatsService : BroadcastReceiver() {
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
 
-
+        if(action.equals(Intent.ACTION_BATTERY_CHANGED)){
+            val extras: Bundle? = intent.extras
+            val i: Intent = Intent("BatteryStats")
+            i.putExtra("voltage", voltage.toString())
+            i.putExtra("temperature", temperature_celcius.toString())
+            context.sendBroadcast(i)
+        }
 
         binding.tvBTPercent.setText(level.toString() + "%")
         binding.conditionValue.setText(battery_condition)
