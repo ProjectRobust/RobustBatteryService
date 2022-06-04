@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
             registerReceiver(batteryReceiver, it)
         }
     }
-    }
-
+}
 
 class BatteryStatsService : BroadcastReceiver(){
 
@@ -78,56 +77,63 @@ class BatteryStatsService : BroadcastReceiver(){
 
 
         //Battery Charge Power Source
-        var chargePlug = intent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
-        if (chargePlug == BatteryManager.BATTERY_PLUGGED_USB) {
-            power_source = "USB"
-        }
-        if (chargePlug == BatteryManager.BATTERY_PLUGGED_AC) {
-            power_source = "AC Source"
-        }
-        if (chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
-            power_source = "Wireless"
-        }
+
 
         //Battery Charging Status
         var status: Int = intent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
         if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
             charging_status = "Charging"
-            binding.batteryCharging.visibility = View.VISIBLE
-            binding.batteryLow.visibility = View.INVISIBLE
+
+            var chargePlug = intent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
+            if (chargePlug == BatteryManager.BATTERY_PLUGGED_USB) {
+                power_source = "USB"
+                binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_white_24dp)
+                binding.imgPowerAc.setImageResource(R.drawable.ic_power_plug_grey600_24dp)
+                binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_grey600_24dp)
+                binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_grey600_24dp)
+            }
+            if (chargePlug == BatteryManager.BATTERY_PLUGGED_AC) {
+                power_source = "AC Source"
+                binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_grey600_24dp)
+                binding.imgPowerAc.setImageResource(R.drawable.ic_power_plug_white_24dp)
+                binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_grey600_24dp)
+                binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_grey600_24dp)
+            }
+            if (chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
+                power_source = "Wireless"
+                binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_grey600_24dp)
+                binding.imgPowerAc.setImageResource(R.drawable.ic_power_plug_grey600_24dp)
+                binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_grey600_24dp)
+                binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_white_24dp)
+            }
+
+
         }
 
         if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {
             charging_status = "Discharging"
-            binding.batteryCharging.visibility = View.INVISIBLE
-            binding.batteryLow.visibility = View.INVISIBLE
+            binding.imgPowerUsb.setImageResource(R.drawable.ic_usb_white_24dp)
+            binding.imgPowerAc.setImageResource(R.drawable.ic_power_plug_grey600_24dp)
+            binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_white_24dp)
+            binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_grey600_24dp)
+
         }
 
         if (status == BatteryManager.BATTERY_STATUS_FULL) {
             charging_status = "Full"
-            binding.batteryCharging.visibility = View.INVISIBLE
-            binding.batteryLow.visibility = View.INVISIBLE
+
         }
 
         if (status == BatteryManager.BATTERY_STATUS_UNKNOWN) {
             charging_status = "Unknown"
-            binding.batteryCharging.visibility = View.INVISIBLE
-            binding.batteryLow.visibility = View.INVISIBLE
+
         }
 
         if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
             charging_status = "Unplugged"
-            binding.batteryCharging.visibility = View.INVISIBLE
-            binding.batteryLow.visibility = View.VISIBLE
-        }
-
-        if (level != null) {
-            if (level <= 15) {
-                binding.batteryCharging.visibility = View.INVISIBLE
-                binding.batteryLow.visibility = View.VISIBLE
-            }
 
         }
+
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
 
@@ -141,5 +147,4 @@ class BatteryStatsService : BroadcastReceiver(){
         binding.progressBar.setProgress(level, true)
 
     }
-
 }

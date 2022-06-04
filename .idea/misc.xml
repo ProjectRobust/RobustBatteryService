@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/RobustBatteryService/app/src/main/res/drawable/chart_marker.xml" value="0.137" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/RobustBatteryService/app/src/main/res/drawable/nav_item_color_state.xml" value="0.137" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RobustBatteryService/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/RobustBatteryService/app/src/main/res/layout/power_source_view.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>
