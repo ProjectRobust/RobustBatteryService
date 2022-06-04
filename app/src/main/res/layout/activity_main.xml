@@ -83,11 +83,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/progressBar"
                 android:layout_alignParentStart="true"
+                android:textColor="@color/white"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/sofia_bold"
                 android:text="Drain out until "
-                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
@@ -224,8 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35sp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/battery_charging"
-                />
+                android:src="@drawable/battery_charging" />
 
             <ImageView
                 android:id="@+id/batteryLow"
@@ -278,11 +277,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvStatus"
-                android:layout_marginLeft="210dp"
+                android:layout_marginLeft="180dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tvVoltage"
                 android:fontFamily="@font/sofia_medium"
-                android:text="9V"
+                android:text="5000V"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -290,20 +289,20 @@
                 android:id="@+id/tvCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvVoltage"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/sofia_medium"
                 android:text="Current"
                 android:textColor="@color/neonGreen"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_below="@id/tvVoltage"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="35dp"
+                android:fontFamily="@font/sofia_medium"/>
 
             <TextView
                 android:id="@+id/tvCurrentValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvVoltage"
-                android:layout_marginLeft="165dp"
+                android:layout_marginLeft="175dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tvCurrent"
                 android:fontFamily="@font/sofia_medium"
@@ -313,7 +312,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 

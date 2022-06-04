@@ -75,7 +75,7 @@ class BatteryStatsService : BroadcastReceiver(){
         //Battery Temperature
         var temperature_celcius: Int =
             ((intent?.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0))!!) / 10
-        var temperature_far: Double = (temperature_celcius * 1.8 + 32)
+
 
         //Battery Charge Power Source
         var chargePlug = intent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
@@ -130,16 +130,16 @@ class BatteryStatsService : BroadcastReceiver(){
         }
 
         var voltage: Int = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
-        var current =
-            intent?.getIntExtra(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW.toString(), 0)
 
-        var chargeCounter: Int = intent?.getIntExtra(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER.toString(), -1)
-        var capacity: Int = intent?.getIntExtra(BatteryManager.BATTERY_PROPERTY_CAPACITY.toString(),-1)
 
-        var battery: Int = (chargeCounter/capacity) * 100
+        binding.tvBTPercent.setText(level.toString() + "%")
+        binding.conditionValue.setText(battery_condition)
+        binding.temperatureValue.setText(temperature_celcius.toString() + "°C")
+        binding.tvStatusValue.setText(charging_status)
+        binding.tvVoltageValue.setText(voltage.toString() + "V")
 
-        binding.tvBatteryPercent.setText(level)
         binding.progressBar.setProgress(level, true)
+
     }
 
 }
