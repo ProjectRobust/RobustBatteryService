@@ -289,13 +289,13 @@
                 android:id="@+id/tvCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tvVoltage"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_medium"
                 android:text="Current"
                 android:textColor="@color/neonGreen"
-                android:textSize="18sp"
-                android:layout_below="@id/tvVoltage"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="35dp"
-                android:fontFamily="@font/sofia_medium"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvCurrentValue"
@@ -312,7 +312,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
