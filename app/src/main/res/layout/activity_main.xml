@@ -154,11 +154,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDrain"
-                android:layout_marginStart="188dp"
+                android:layout_marginStart="180dp"
                 android:layout_marginTop="75dp"
                 android:layout_toEndOf="@id/tvCondition"
                 android:fontFamily="@font/sofia_medium"
-                android:text="36°"
+                android:text="36°C"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDrain"
-                android:layout_marginStart="130dp"
+                android:layout_marginStart="135dp"
                 android:layout_marginTop="115dp"
                 android:layout_toEndOf="@id/tvCondition"
                 android:fontFamily="@font/sofia_medium"
@@ -287,12 +287,13 @@
                 android:text="Charging"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/tvStatusValueDischarging"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/batteryCharging"
-                android:layout_marginLeft="145dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tvStatus"
                 android:fontFamily="@font/sofia_medium"
@@ -317,7 +318,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvStatus"
-                android:layout_marginLeft="180dp"
+                android:layout_marginLeft="185dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tvVoltage"
                 android:fontFamily="@font/sofia_medium"
@@ -355,14 +356,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvVoltage"
-                android:layout_marginLeft="175dp"
+                android:layout_marginLeft="170dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tvCurrent"
                 android:fontFamily="@font/sofia_medium"
                 android:text="2000mA"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                 />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -12,7 +12,6 @@ import java.util.*
 
 private lateinit var binding: ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var batteryReceiver: BatteryStatsService
