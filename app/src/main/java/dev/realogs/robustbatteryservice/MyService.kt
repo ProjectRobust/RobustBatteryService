@@ -47,7 +47,7 @@ class MyService : Service() {
             .Builder(this, CHANNEL_ID)
             .setContentTitle("Battery Monitor")
             .setContentText(batteryLevel.toString())
-            .setSmallIcon(R.drawable.ic_baseline_battery_5_bar_24 *)
+            .setSmallIcon(R.drawable.ic_baseline_battery_5_bar_24)
             .setContentIntent(pendingIntent)
             .build()
 
