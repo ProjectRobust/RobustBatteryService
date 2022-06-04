@@ -1,13 +1,16 @@
 package dev.realogs.robustbatteryservice
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
+import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import dev.realogs.robustbatteryservice.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
@@ -27,12 +30,44 @@ class MainActivity : AppCompatActivity() {
         IntentFilter(Intent.ACTION_BATTERY_CHANGED).also {
             registerReceiver(batteryReceiver, it)
         }
+
+        startStopService()
+    }
+
+    private fun startStopService() {
+        if (!isMyServiceRunning(MyService::class.java)) {
+            Toast.makeText(this, "Battery Service is Running", Toast.LENGTH_SHORT).show()
+            startService(Intent(this, MyService::class.java))
+        }
+    }
+
+    private fun isMyServiceRunning(mClass: Class<MyService>): Boolean {
+
+        val manager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+        for (service: ActivityManager.RunningServiceInfo in manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (mClass.name.equals(service.service.className)) {
+                return true
+            }
+        }
+        return false
     }
 }
 
-class BatteryStatsService : BroadcastReceiver(){
+class BatteryStatsService : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        if(intent == null){
+            return
+        }
+        if(context == null){
+            return
+        }
+
+        val action: String? = intent.action
+        if(action == null)
+            return
+
         var charging_status = ""
         var battery_condition = ""
         var power_source = "Unplugged"
@@ -89,7 +124,7 @@ class BatteryStatsService : BroadcastReceiver(){
             binding.batteryCharging.visibility = View.VISIBLE
             binding.batteryVeryLow.visibility = View.INVISIBLE
 
-            if(level <= 15){
+            if (level <= 15) {
                 binding.batteryVeryLow.visibility = View.VISIBLE
                 binding.batteryVeryLow.setImageResource(R.drawable.battery_very_low)
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
@@ -97,7 +132,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
 
 
-            }else if (level >= 15 && level< 35){
+            } else if (level >= 15 && level < 35) {
 
                 binding.batteryLow.visibility = View.VISIBLE
                 binding.batteryLow.setImageResource(R.drawable.battery_low)
@@ -105,7 +140,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
                 binding.batteryVeryLow.visibility = View.INVISIBLE
 
-            } else if(level >= 35 && level < 80){
+            } else if (level >= 35 && level < 80) {
 
                 binding.batteryMedium.visibility = View.VISIBLE
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium)
@@ -113,7 +148,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
                 binding.batteryVeryLow.visibility = View.INVISIBLE
 
-            } else if(level >= 80){
+            } else if (level >= 80) {
                 binding.batteryFull.visibility = View.VISIBLE
                 binding.batteryFull.setImageResource(R.drawable.battery_full)
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
@@ -159,7 +194,7 @@ class BatteryStatsService : BroadcastReceiver(){
             binding.imgPowerDischarging.setImageResource(R.drawable.ic_battery_50_white_24dp)
             binding.imgPowerWireless.setImageResource(R.drawable.ic_access_point_grey600_24dp)
 
-            if(level <= 15){
+            if (level <= 15) {
                 binding.batteryVeryLow.visibility = View.VISIBLE
                 binding.batteryVeryLow.setImageResource(R.drawable.battery_very_low)
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
@@ -167,7 +202,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryFull.setImageResource(R.drawable.battery_full_grey)
                 binding.batteryCharging.visibility = View.INVISIBLE
 
-            }else if (level >= 15 && level< 35){
+            } else if (level >= 15 && level < 35) {
 
                 binding.batteryLow.visibility = View.VISIBLE
                 binding.batteryLow.setImageResource(R.drawable.battery_low)
@@ -176,7 +211,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryVeryLow.visibility = View.INVISIBLE
                 binding.batteryCharging.visibility = View.INVISIBLE
 
-            } else if(level >= 35 && level < 80){
+            } else if (level >= 35 && level < 80) {
 
                 binding.batteryMedium.visibility = View.VISIBLE
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium)
@@ -185,7 +220,7 @@ class BatteryStatsService : BroadcastReceiver(){
                 binding.batteryVeryLow.visibility = View.INVISIBLE
                 binding.batteryCharging.visibility = View.INVISIBLE
 
-            } else if(level >= 80){
+            } else if (level >= 80) {
                 binding.batteryFull.visibility = View.VISIBLE
                 binding.batteryFull.setImageResource(R.drawable.battery_full)
                 binding.batteryMedium.setImageResource(R.drawable.battery_medium_grey)
@@ -224,7 +259,6 @@ class BatteryStatsService : BroadcastReceiver(){
         binding.conditionValue.setText(battery_condition)
         binding.temperatureValue.setText(temperature_celcius.toString() + "°C")
         binding.tvVoltageValue.setText(voltage.toString() + "V")
-
         binding.progressBar.setProgress(level, true)
 
     }
