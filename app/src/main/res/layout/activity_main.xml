@@ -1,18 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tvBatteryMonitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sofia_bold"
+        android:text="Battery Monitor"
+        android:textColor="@color/neonGreen"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBatteryMonitor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBatteryMonitor"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="#212121"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/tvBatteryPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_bold"
+                android:text="Battery Percentage :"
+                android:textColor="@color/neonGreen"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvBTPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvBatteryPercent"
+                android:fontFamily="@font/sofia_bold"
+                android:text="69%"
+                android:textColor="@color/neonGreen"
+                android:textSize="20dp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBatteryPercent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="15dp"
+                android:indeterminate="false"
+                app:indicatorColor="@color/material_blue"
+                app:trackColor="@color/material_blue_light"
+                app:trackCornerRadius="50dp"
+                app:trackThickness="8dp">
+
+            </com.google.android.material.progressindicator.LinearProgressIndicator>
+
+            <TextView
+                android:id="@+id/tvDrain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sofia_bold"
+                android:text="Drain out until "
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvDrainTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tvDrain"
+                android:fontFamily="@font/sofia_bold"
+                android:text="10:54 am"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tvDrainTime"
+                android:fontFamily="@font/sofia_bold"
+                android:text=" [Based on usages]"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvCondition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Condition"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/conditionValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@id/tvCondition"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Good"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="75dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Temperature"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/temperatureValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="75dp"
+                android:layout_toEndOf="@id/tvCondition"
+                android:fontFamily="@font/sofia_medium"
+                android:text="36°C"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvCapacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="115dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Capacity"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/capacityValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDrain"
+                android:layout_marginStart="135dp"
+                android:layout_marginTop="115dp"
+                android:layout_toEndOf="@id/tvCondition"
+                android:fontFamily="@font/sofia_medium"
+                android:text="5000 mAh"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvChargingDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvBatteryMonitor"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/sofia_medium"
+        android:text="Charging Details"
+        android:textColor="@color/neonGreen"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvChargingDetails"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="#212121"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+
+            <ImageView
+                android:id="@+id/batteryCharging"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35sp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/battery_charge" />
+
+            <ImageView
+                android:id="@+id/batteryLow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toEndOf="@id/batteryCharging"
+                android:src="@drawable/battery_low" />
+
+            <ImageView
+                android:id="@+id/batteryMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/batteryLow"
+                android:src="@drawable/battery_medium" />
+
+            <ImageView
+                android:id="@+id/batteryFull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/batteryMedium"
+                android:src="@drawable/battery_full" />
+
+            <ImageView
+                android:id="@+id/batteryVeryLow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toEndOf="@id/batteryFull"
+                android:src="@drawable/battery_very_low" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/batteryCharging"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Status"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/tvStatusValueCharging"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/batteryCharging"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvStatus"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Charging"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvStatusValueDischarging"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/batteryCharging"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvStatus"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Discharging"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvVoltage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvStatus"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Voltage"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvVoltageValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvStatus"
+                android:layout_marginLeft="185dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvVoltage"
+                android:fontFamily="@font/sofia_medium"
+                android:text="5000V"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvVoltage"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sofia_medium"
+                android:text="Current"
+                android:textColor="@color/neonGreen"
+                android:textSize="18sp" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvCurrentValueMeasuring"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/tvVoltage"-->
+<!--                android:layout_marginLeft="140dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_toEndOf="@id/tvCurrent"-->
+<!--                android:fontFamily="@font/sofia_medium"-->
+<!--                android:text="Measuring.."-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="18sp" />-->
+
+            <TextView
+                android:id="@+id/tvCurrentValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvVoltage"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/tvCurrent"
+                android:fontFamily="@font/sofia_medium"
+                android:text="2000mA"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardViewCDetails"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
+
+        <ImageView
+            android:id="@+id/imgPowerDischarging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/ic_battery_50_grey600_24dp" />
+
+        <ImageView
+            android:id="@+id/imgPowerAc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerDischarging"
+            android:layout_toRightOf="@+id/imgPowerDischarging"
+            app:srcCompat="@drawable/ic_power_plug_grey600_24dp" />
+
+        <ImageView
+            android:id="@+id/imgPowerUsb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgPowerAc"
+            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerAc"
+            android:layout_toRightOf="@+id/imgPowerAc"
+            app:srcCompat="@drawable/ic_usb_grey600_24dp" />
+
+        <ImageView
+            android:id="@+id/imgPowerWireless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgPowerUsb"
+            android:layout_marginStart="@dimen/list_sub_item_margin"
+            android:layout_marginLeft="@dimen/list_sub_item_margin"
+            android:layout_toEndOf="@+id/imgPowerUsb"
+            android:layout_toRightOf="@+id/imgPowerUsb"
+            app:srcCompat="@drawable/ic_access_point_grey600_24dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

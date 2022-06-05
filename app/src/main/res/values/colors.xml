@@ -1,10 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="material_red">#FF6767</color>
+    <color name="material_blue">#548EFF</color>
+    <color name="material_green">#96FF8D</color>
+    <color name="material_blue_light">#D7D5F6FF</color>
+    <color name="gray">#717171</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#717171</color>
+    <color name="orange">#FF8222</color>
+    <color name="blueMain">#0668E1</color>
+    <color name="lightBlue">#C3F1FF</color>
+    <color name="lightMain">#61A3F3</color>
+    <color name="cardColor1">#C498FF</color>
+    <color name="cardColor2">#EAE1D2</color>
+    <color name="cardColor3">#BECFFB</color>
+    <color name="cardColor4">#CCFFCC</color>
+    <color name="cardColor5">#B7EFEA</color>
+    <color name="cardColor6">#FBA3DE</color>
+    <color name="cardColor7">#DF67FFE0</color>
+    <color name="cardColor8">#DFFFC074</color>
+    <color name="cardColor9">#DD55FAA5</color>
+    <color name="cardColor10">#D8FF7F99</color>
+    <color name="cardColor11">#DCA679F8</color>
+    <color name="cardColor12">#5DC9FA</color>
+    <color name="cardColor13">#E6FF9879</color>
+    <color name="cardColor14">#FBA3DE</color>
+    <color name="cardColor15">#D38F77FB</color>
+    <color name="dark">#171717</color>
+    <!--SnackBar Colors-->
+    <color name="colorSuccess">#4caf50</color>
+    <color name="colorError">#d32f2f</color>
+    <color name="colorWarning">#ff9800</color>
+
+    <color name="trans">#00FFFFFF</color>
+    <color name="bottomNavC">#8DB4FF</color>
+    <color name="neonGreen">#3BFFAD</color>
+
+    <color name="color_primary">#96FF8D</color>
+    <color name="color_primary_dark">#2BE834</color>
+    <color name="color_accent">#ff9100</color>
+    <color name="dark_gray">#222</color>
+    <color name="light_gray">#eee</color>
+    <color name="splash_background">#fff</color>
+    <color name="cardLayoutBackground">#E4E4E4</color>
+    <color name="cardLayoutBackground2">#D3D6DB</color>
+
+
+    <!-- App Primary View Colors -->
+    <color name="app_primary_accent">#FF26C6DA</color>
+    <color name="app_secondary_accent">#1A000000</color>
+    <color name="app_primary_text">#444444</color>
+    <color name="app_secondary_text">#444444</color>
+    <color name="app_white">#FFFEFEFE</color>
+    <color name="app_io_logo_tint">#FF26C6DA</color>
+    <color name="divider">#1f000000</color>
+
+    <color name="theme_primary">#ff9100</color>
+    <color name="theme_primary_dark">#388e3c</color>
+    <color name="theme_primary_light">#4caf50</color>
+
+    <!-- App Primary Text Colors -->
+    <color name="flat_button_text">#4caf50</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>
