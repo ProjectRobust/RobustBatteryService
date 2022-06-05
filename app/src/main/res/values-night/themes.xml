@@ -3,7 +3,7 @@
     <style name="Theme.RobustBattery" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/material_red</item>
-        <item name="colorPrimaryVariant">@color/material_blue</item>
+        <item name="colorPrimaryVariant">@color/material_green</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/material_green</item>
